@@ -87,7 +87,7 @@ public class PluginExample extends JavaPlugin {
           ItemStackStreamHelper.writeItemStack(itemStack, newData); //writing new data
           return PacketState.CHANGED;
         }catch (Exception e) {
-          return PacketState.NONE;
+          return PacketState.CANCELLED;
         }
       }
 
