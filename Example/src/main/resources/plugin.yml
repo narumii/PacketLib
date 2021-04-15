@@ -1,0 +1,4 @@
+version: test
+author: narumi
+name: example
+main: uwu.narumi.example.packetlib.PluginExample
