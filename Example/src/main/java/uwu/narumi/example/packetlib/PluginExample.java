@@ -9,6 +9,9 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
+import uwu.narumi.itemstack.ItemStack;
+import uwu.narumi.itemstack.helper.ItemStackStreamHelper;
+import uwu.narumi.nbt.impl.CompoundTag;
 import uwu.narumi.packetlib.api.helper.BufHelper;
 import uwu.narumi.packetlib.api.packet.PacketHandler;
 import uwu.narumi.packetlib.api.packet.PacketInterceptor;
@@ -75,9 +78,17 @@ public class PluginExample extends JavaPlugin {
 
     @Override
     public PacketState receive(int packetId, ByteBuf data, ByteBuf newData) {
-      if (packetId == 0x01) {
-        BufHelper.writeString("fuck me", newData);
-        return PacketState.CHANGED;
+      if (packetId == 0x10) {
+        try {
+          newData.writeShort(data.readShort()); //Slot id
+
+          ItemStack itemStack = ItemStackStreamHelper.readItemStack(data); //original itemstack
+          itemStack.setCompoundTag(new CompoundTag()); //setting new item nbt
+          ItemStackStreamHelper.writeItemStack(itemStack, newData); //writing new data
+          return PacketState.CHANGED;
+        }catch (Exception e) {
+          return PacketState.NONE;
+        }
       }
 
       return PacketState.NONE;

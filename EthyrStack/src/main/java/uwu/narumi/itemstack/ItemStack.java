@@ -8,9 +8,9 @@ import uwu.narumi.nbt.impl.StringTag;
 public class ItemStack {
 
   private final int id;
-  private final int amount;
-  private final short data;
-  private final CompoundTag compoundTag;
+  private int amount;
+  private short data;
+  private CompoundTag compoundTag;
 
   public ItemStack(int id, int amount, int data, CompoundTag compoundTag) {
     this.id = id;
@@ -92,6 +92,18 @@ public class ItemStack {
 
   public CompoundTag getCompoundTag() {
     return compoundTag;
+  }
+
+  public void setAmount(int amount) {
+    this.amount = amount;
+  }
+
+  public void setData(short data) {
+    this.data = data;
+  }
+
+  public void setCompoundTag(CompoundTag compoundTag) {
+    this.compoundTag = compoundTag;
   }
 
   public static Builder builder() {
