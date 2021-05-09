@@ -1,4 +1,4 @@
-version: test
+version: 1.0.0
 author: narumi
-name: example
+name: PacketLibExample
 main: uwu.narumi.example.packetlib.PluginExample

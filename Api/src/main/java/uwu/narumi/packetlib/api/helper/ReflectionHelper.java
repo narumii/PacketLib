@@ -6,8 +6,9 @@ import java.lang.reflect.Method;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-public class ReflectionHelper {
+public final class ReflectionHelper {
 
+  private static String VERSION;
   private static String BUKKIT;
   private static String NMS;
 
@@ -20,6 +21,7 @@ public class ReflectionHelper {
     try {
       BUKKIT = Bukkit.getServer().getClass().getName().replace(".CraftServer", "");
       NMS = BUKKIT.replace("org.bukkit.craftbukkit", "net.minecraft.server");
+      VERSION = (BUKKIT.split("\\.")[BUKKIT.split("\\.").length - 1]).substring(1).replace("_", "."); //Yes i know boiler plate
 
       Class<?> craftPlayerClass = Class.forName(BUKKIT + ".entity.CraftPlayer");
       Class<?> entityPlayerClass = Class.forName(NMS + ".EntityPlayer");
@@ -40,5 +42,17 @@ public class ReflectionHelper {
     Object playerConnection = playerConnectionField.get(entityPlayer);
     Object networkManager = networkManagerField.get(playerConnection);
     return (Channel) channelField.get(networkManager);
+  }
+
+  public static String getBukkitPackage() {
+    return BUKKIT;
+  }
+
+  public static String getServerPackage() {
+    return NMS;
+  }
+
+  public static String getVersion() {
+    return VERSION;
   }
 }

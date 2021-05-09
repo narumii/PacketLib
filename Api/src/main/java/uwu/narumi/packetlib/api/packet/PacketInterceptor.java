@@ -55,7 +55,7 @@ public abstract class PacketInterceptor extends ByteToMessageDecoder {
     }
   }
 
-  public abstract PacketState receive(int packetId, ByteBuf data, ByteBuf newData);
+  public abstract PacketState receive(int packetId, ByteBuf data, ByteBuf newData) throws Exception;
 
   public abstract void exception(Exception e);
 }
