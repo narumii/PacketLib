@@ -6,7 +6,7 @@ import uwu.narumi.nbt.impl.StringTag;
 
 public class ItemStackExample {
 
-  public static void main(String... args) throws Exception {
+  public static void main(String... args) {
     CompoundTag compoundTag = new CompoundTag();
     compoundTag.with("pages",
         new StringTag("page 1"),
@@ -25,6 +25,6 @@ public class ItemStackExample {
     itemStack.lore("lore1", "lore2");
     itemStack.enchant(5, 1);
 
-    System.out.println(itemStack.toString());
+    System.out.println(itemStack);
   }
 }

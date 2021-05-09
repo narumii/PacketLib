@@ -5,7 +5,6 @@ import java.io.DataOutput;
 import java.io.IOException;
 import uwu.narumi.nbt.NbtTag;
 import uwu.narumi.nbt.NbtType;
-import uwu.narumi.nbt.exception.NBTException;
 
 public class NbtStreamHelper {
 

@@ -139,7 +139,7 @@ public class CompoundTag implements NbtTag {
           .append("name=")
           .append(name)
           .append(", ")
-          .append(tag.toString())
+          .append(tag)
           .append((atomicInteger.get() >= tags.size() ? "" : ", "));
     });
 

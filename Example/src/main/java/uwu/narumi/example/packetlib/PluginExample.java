@@ -1,6 +1,7 @@
 package uwu.narumi.example.packetlib;
 
 import io.netty.buffer.ByteBuf;
+import java.io.IOException;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -12,7 +13,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import uwu.narumi.itemstack.ItemStack;
 import uwu.narumi.itemstack.helper.ItemStackStreamHelper;
 import uwu.narumi.nbt.impl.CompoundTag;
-import uwu.narumi.packetlib.api.helper.BufHelper;
 import uwu.narumi.packetlib.api.helper.ReflectionHelper;
 import uwu.narumi.packetlib.api.packet.PacketHandler;
 import uwu.narumi.packetlib.api.packet.PacketInterceptor;
@@ -80,7 +80,7 @@ public class PluginExample extends JavaPlugin {
     }
 
     @Override
-    public PacketState receive(int packetId, ByteBuf data, ByteBuf newData) throws Exception {
+    public PacketState receive(int packetId, ByteBuf data, ByteBuf newData) throws IOException {
       if (packetId == 0x10 && canReWrite) {
         newData.writeShort(data.readShort()); //Slot id
 
@@ -89,7 +89,7 @@ public class PluginExample extends JavaPlugin {
           itemStack.setCompoundTag(new CompoundTag()); //setting new item nbt
           itemStack.name("Noice");
           itemStack.lore("B", "U", "S", "T", "A", "R", "D");
-          itemStack.enchant(1,1);
+          itemStack.enchant(1, 1);
         }
 
         ItemStackStreamHelper.writeItemStack(itemStack, newData); //writing new data

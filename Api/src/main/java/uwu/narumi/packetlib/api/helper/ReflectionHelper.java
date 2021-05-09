@@ -21,7 +21,8 @@ public final class ReflectionHelper {
     try {
       BUKKIT = Bukkit.getServer().getClass().getName().replace(".CraftServer", "");
       NMS = BUKKIT.replace("org.bukkit.craftbukkit", "net.minecraft.server");
-      VERSION = (BUKKIT.split("\\.")[BUKKIT.split("\\.").length - 1]).substring(1).replace("_", "."); //Yes i know boiler plate
+      VERSION = (BUKKIT.split("\\.")[BUKKIT.split("\\.").length - 1]).substring(1)
+          .replace("_", "."); //Yes i know boiler plate
 
       Class<?> craftPlayerClass = Class.forName(BUKKIT + ".entity.CraftPlayer");
       Class<?> entityPlayerClass = Class.forName(NMS + ".EntityPlayer");

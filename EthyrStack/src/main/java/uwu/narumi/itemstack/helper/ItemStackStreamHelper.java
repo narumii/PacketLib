@@ -4,7 +4,6 @@ import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufInputStream;
 import io.netty.buffer.ByteBufOutputStream;
 import java.io.IOException;
-import net.minecraft.server.v1_8_R3.NBTBase;
 import uwu.narumi.itemstack.ItemStack;
 import uwu.narumi.nbt.NbtTag;
 import uwu.narumi.nbt.helper.NbtStreamHelper;
@@ -20,10 +19,11 @@ public class ItemStackStreamHelper {
       buf.writeByte(itemStack.amount());
       buf.writeShort(itemStack.data());
 
-      if (itemStack.getCompoundTag() != null)
+      if (itemStack.getCompoundTag() != null) {
         NbtStreamHelper.writeTag(itemStack.getCompoundTag(), new ByteBufOutputStream(buf));
-      else
+      } else {
         buf.writeByte(0);
+      }
     }
   }
 
@@ -34,7 +34,8 @@ public class ItemStackStreamHelper {
       byte amount = buf.readByte();
       short data = buf.readShort();
       NbtTag compoundTag = NbtStreamHelper.readTag(new ByteBufInputStream(buf));
-      itemStack = new ItemStack(id, amount, data, compoundTag instanceof CompoundTag ? (CompoundTag) compoundTag : null);
+      itemStack = new ItemStack(id, amount, data,
+          compoundTag instanceof CompoundTag ? (CompoundTag) compoundTag : null);
     }
 
     return itemStack;

@@ -41,7 +41,7 @@ public class NamedBinaryTagExample {
 
     try (DataInputStream in = new DataInputStream(new FileInputStream("test.nbt"))) {
       CompoundTag tag = (CompoundTag) NbtStreamHelper.readTag(in);
-      System.out.println(tag.toString());
+      System.out.println(tag);
     }
   }
 }
